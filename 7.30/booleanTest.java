@@ -2,7 +2,7 @@ public class booleanTest {
     public static void main(String[] args) {
         boolean b1 = false;
         boolean b2 = false;
-        //?????
+        //≈–∂œboolean÷µ
         if(b1) {
             System.out.println("b1=T");
         }
