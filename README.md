@@ -1,2 +1,2 @@
-# javaNoobNotes
-Notes by a Java Noob...
+# CodeNotes
+Code notes by a noob
