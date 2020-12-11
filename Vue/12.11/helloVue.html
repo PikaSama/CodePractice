@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Vue!</title>
+</head>
+<body>
+<div id="hello">
+    <p>{{ msg }}</p>
+</div>
+<div id="h1text">
+    <div v-html="text"></div>
+</div>
+<div id="bind">
+    <!-- v-bind:style 等同于 :style -->
+    <div :style="{'color': color}">{{ text }} | {{ text ? 'YES' : 'NO' }}</div>
+    <!-- v-on:click 等同于 @click -->
+    <button @click="printMessage">打印信息</button>
+    <button @click="resetMessage">还原信息</button>
+</div>
+<div id="ifdemo">
+    <div v-if="isVisible">阿啦，被发现了呢</div>
+    <button @click="changeVisibility">切换状态</button>
+</div>
+<div id="ifelsedemo">
+    <div v-if="num >= 10">Fulled</div>
+    <div v-else>{{ num }}/10</div>
+    <button @click="addNum">增加数值</button>
+    <button @click="resetNum">重置数值</button>
+</div>
+<div id="v-showdemo">
+    <div v-show="isShowable" style="color:green;"><h1>Hello Vue!</h1></div>
+    <button @click="changeVisibility">切换状态</button>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    // hello vue
+    new Vue({
+        el: '#hello',
+        data: {
+            msg: 'Hello Vue',
+        },
+    });
+    // 使用v-html渲染html代码
+    new Vue({
+        el: '#h1text',
+        data: {
+            text: '<h1>Hello Vue!(H1 Title)</h1>',
+        },
+    });
+    // 使用v-bind设置属性 & js表达式
+    new Vue({
+        el: '#bind',
+        data: {
+            color: 'blue',
+            text: 'Hello Vue',
+        },
+        methods: {
+            printMessage() {
+                this.text = "Print message";
+            },
+            resetMessage() {
+                this.text = "Hello Vue";
+            },
+        },
+    });
+    // v-if控制内容显示
+    new Vue({
+        el: '#ifdemo',
+        data: {
+            isVisible: true,
+        },
+        methods: {
+            changeVisibility() {
+                this.isVisible = !this.isVisible;
+            },
+        },
+    });
+    // v-if和v-else控制内容显示，此处省略v-else-if
+    new Vue({
+        el: '#ifelsedemo',
+        data: {
+            num: 0,
+        },
+        methods: {
+            addNum() {
+                if (this.num < 10) {
+                    this.num++;
+                }
+            },
+            resetNum() {
+                this.num = 0;
+            },
+        },
+    });
+    // v-show控制元素显示
+    new Vue({
+        el: '#v-showdemo',
+        data: {
+            isShowable: true,
+        },
+        methods: {
+            changeVisibility() {
+                this.isShowable = !this.isShowable;
+            },
+        },
+    });
+</script>
+</body>
+</html>

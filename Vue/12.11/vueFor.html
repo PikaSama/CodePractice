@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>vueFor</title>
+</head>
+<body>
+<div id="v-fordemo">
+    <!-- 遍历数组 -->
+    <div v-for="name in namelist"><li>{{ name }}</li></div>
+    <!-- 迭代整数 -->
+    <div v-for="num in 10"><li>{{ num }}</li></div>
+    <!-- 遍历对象 -->
+    <div v-for="(val,key,indx) in object">{{ key }} : {{ val }} - {{ indx }}</div>
+</div>
+<div id="computedemo">
+    <p>原字符串：{{ msg }}</p>
+    <p>反转处理：{{ reverseMsg }}</p>
+</div>
+<div id="v-modeldemo">
+    <input v-model="val">
+    <p>{{ val }}</p>
+</div>
+<div id="calculator">
+    <input v-model="val">
+    <p>{{ calculate }}</p>
+</div>
+<div id="setter-demo">
+    <input v-model="inputVal">
+    <p>{{ val }}</p>
+    <p>{{ val2 }}</p>
+    <button @click="setVal">应用</button>
+</div>
+<div id="danwei">
+    米：<input v-model="meter">
+    千米：<input v-model="kilometer">
+    <p>上次 - 米：{{ lastMeter }} | 千米：{{ lastKilometer }}</p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    // v-for循环
+    new Vue({
+        el: '#v-fordemo',
+        data: {
+            namelist: [
+                '张三',
+                '李四',
+                '王五',
+            ],
+            object: {
+                zhangsan: '张三',
+                lisi: '李四',
+                wangwu: '王五',
+            },
+        },
+    });
+    // computed计算属性
+    new Vue({
+        el: '#computedemo',
+        data: {
+            msg: 'Hello Vue!',
+        },
+        computed: {
+            reverseMsg() {
+                return this.msg.split('').reverse().join('');
+            },
+        },
+    });
+    // v-model指令
+    new Vue({
+        el: '#v-modeldemo',
+        data: {
+            val: 'Type your text here',
+        },
+    });
+    // 计算器，使用Function构造函数运行语句(可运行其他代码)
+    new Vue({
+        el: '#calculator',
+        data: {
+            val: '1',
+        },
+        computed: {
+            calculate() {
+                let func = new Function('return '+this.val);
+                return func();
+            },
+        },
+    });
+    // setter的应用
+    const setterDemo = new Vue({
+        el: '#setter-demo',
+        data: {
+            inputVal: '',
+            val: '',
+            val2: '',
+        },
+        methods: {
+            setVal() {
+                this.value = this.inputVal;
+            },
+        },
+        computed: {
+            value: {
+                get: function () {
+                    return this.val + ' -- ' + this.val2;
+                },
+                set: function (newValue) {
+                    this.val = newValue;
+                    this.val2 = newValue + ' -- ' + newValue.split('').reverse().join('');
+                },
+            },
+        },
+    });
+    // setterDemo.value = 'Test';
+    // 单位转换
+    const danwei = new Vue({
+        el: '#danwei',
+        data: {
+            meter: 0,
+            lastMeter: 0,
+            kilometer: 0,
+            lastKilometer: 0,
+        },
+        watch: {
+            meter: function (newValue) {
+                this.kilometer = newValue / 1000;
+            },
+            kilometer: function (newValue) {
+                this.meter = newValue * 1000;
+            },
+        },
+    });
+    danwei.$watch('meter',function (newVal,oldVal) {
+        danwei.lastMeter = oldVal;
+    });
+    danwei.$watch('kilometer',function (newVal,oldVal) {
+        danwei.lastKilometer = oldVal;
+    });
+</script>
+</body>
+</html>
