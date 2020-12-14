@@ -2,11 +2,16 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <title>Hello Vue!</title>
 </head>
 <body>
 <div id="hello">
     <p>{{ msg }}</p>
+</div>
+<div id="vuetemplate"></div>
+<div id="vuetext">
+    <p v-html="msg"></p>
 </div>
 <div id="h1text">
     <div v-html="text"></div>
@@ -32,11 +37,25 @@
     <div v-show="isShowable" style="color:green;"><h1>Hello Vue!</h1></div>
     <button @click="changeVisibility">切换状态</button>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
     // hello vue
     new Vue({
         el: '#hello',
+        data: {
+            msg: 'Hello Vue',
+        },
+    });
+    // 可使用template定义模板
+    new Vue({
+        el: '#vuetemplate',
+        template: '<h2>{{ msg }}(H2 Title)</h2>',
+        data: {
+            msg: 'Hello Vue',
+        },
+    });
+    // 使用v-text为元素的文本值绑定变量
+    new Vue({
+        el: '#vuetext',
         data: {
             msg: 'Hello Vue',
         },
