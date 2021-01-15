@@ -6,37 +6,38 @@
     <title>vueFor</title>
 </head>
 <body>
-<div id="v-fordemo">
-    <!-- 遍历数组 -->
-    <div v-for="name in namelist"><li>{{ name }}</li></div>
-    <!-- 迭代整数 -->
-    <div v-for="num in 10"><li>{{ num }}</li></div>
-    <!-- 遍历对象 -->
-    <div v-for="(val,key,indx) in object">{{ key }} : {{ val }} - {{ indx }}</div>
-</div>
-<div id="computedemo">
-    <p>原字符串：{{ msg }}</p>
-    <p>反转处理：{{ reverseMsg }}</p>
-</div>
-<div id="v-modeldemo">
-    <input v-model="val">
-    <p>{{ val }}</p>
-</div>
-<div id="calculator">
-    <input v-model="val">
-    <p>{{ calculate }}</p>
-</div>
-<div id="setter-demo">
-    <input v-model="inputVal">
-    <p>{{ val }}</p>
-    <p>{{ val2 }}</p>
-    <button @click="setVal">应用</button>
-</div>
-<div id="danwei">
-    米：<input v-model="meter">
-    千米：<input v-model="kilometer">
-    <p>上次 - 米：{{ lastMeter }} | 千米：{{ lastKilometer }}</p>
-</div>
+    <div id="v-fordemo">
+        <!-- 遍历数组 -->
+        <!-- key属性用于优化性能 -->
+        <div v-for="(name,indx) in namelist" :key="'arr'+indx"><li>{{ name }} - {{ indx }}</li></div>
+        <!-- 迭代整数 -->
+        <div v-for="num in 10"><li>{{ num }}</li></div>
+        <!-- 遍历对象 -->
+        <div v-for="(val,key,indx) in object" :key="'obj'+indx">{{ key }} : {{ val }} - {{ indx }}</div>
+    </div>
+    <div id="computedemo">
+        <p>原字符串：{{ msg }}</p>
+        <p>反转处理：{{ reverseMsg }}</p>
+    </div>
+    <div id="v-modeldemo">
+        <input v-model="val">
+        <p>{{ val }}</p>
+    </div>
+    <div id="calculator">
+        <input v-model="val">
+        <p>{{ calculate }}</p>
+    </div>
+    <div id="setter-demo">
+        <input v-model="inputVal">
+        <p>{{ val }}</p>
+        <p>{{ val2 }}</p>
+        <button @click="setVal">应用</button>
+    </div>
+    <div id="danwei">
+        米：<input v-model="meter">
+        千米：<input v-model="kilometer">
+        <p>上次 - 米：{{ lastMeter }} | 千米：{{ lastKilometer }}</p>
+    </div>
 <script>
     // v-for循环
     new Vue({

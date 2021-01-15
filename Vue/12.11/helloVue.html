@@ -6,37 +6,37 @@
     <title>Hello Vue!</title>
 </head>
 <body>
-<div id="hello">
-    <p>{{ msg }}</p>
-</div>
-<div id="vuetemplate"></div>
-<div id="vuetext">
-    <p v-html="msg"></p>
-</div>
-<div id="h1text">
-    <div v-html="text"></div>
-</div>
-<div id="bind">
-    <!-- v-bind:style 等同于 :style -->
-    <div :style="{'color': color}">{{ text }} | {{ text ? 'YES' : 'NO' }}</div>
-    <!-- v-on:click 等同于 @click -->
-    <button @click="printMessage">打印信息</button>
-    <button @click="resetMessage">还原信息</button>
-</div>
-<div id="ifdemo">
-    <div v-if="isVisible">阿啦，被发现了呢</div>
-    <button @click="changeVisibility">切换状态</button>
-</div>
-<div id="ifelsedemo">
-    <div v-if="num >= 10">Fulled</div>
-    <div v-else>{{ num }}/10</div>
-    <button @click="addNum">增加数值</button>
-    <button @click="resetNum">重置数值</button>
-</div>
-<div id="v-showdemo">
-    <div v-show="isShowable" style="color:green;"><h1>Hello Vue!</h1></div>
-    <button @click="changeVisibility">切换状态</button>
-</div>
+    <div id="hello">
+        <p>{{ msg }}</p>
+    </div>
+    <div id="vuetemplate"></div>
+    <div id="vuetext">
+        <p v-html="msg"></p>
+    </div>
+    <div id="h1text">
+        <div v-html="text"></div>
+    </div>
+    <div id="bind">
+        <!-- v-bind:style 等同于 :style -->
+        <div :style="{'color': color}">{{ text }} | {{ text ? 'YES' : 'NO' }}</div>
+        <!-- v-on:click 等同于 @click -->
+        <button @click="printMessage">打印信息</button>
+        <button @click="resetMessage">还原信息</button>
+    </div>
+    <div id="ifdemo">
+        <div v-if="isVisible">阿啦，被发现了呢</div>
+        <button @click="changeVisibility">切换状态</button>
+    </div>
+    <div id="ifelsedemo">
+        <div v-if="num >= 10">Fulled</div>
+        <div v-else>{{ num }}/10</div>
+        <button @click="addNum">增加数值</button>
+        <button @click="resetNum">重置数值</button>
+    </div>
+    <div id="v-showdemo">
+        <div v-show="isShowable" style="color:green;"><h1>Hello Vue!</h1></div>
+        <button @click="changeVisibility">切换状态</button>
+    </div>
 <script>
     // hello vue
     new Vue({
