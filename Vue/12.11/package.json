@@ -1,0 +1,13 @@
+{
+    "name": "Practice-12.11",
+    "version": "1.0.0",
+    "main": "index.js",
+    "author": "Zorin",
+    "license": "MIT",
+    "devDependencies": {
+        "prettier": "^2.2.1"
+    },
+    "scripts": {
+        "format": "yarn prettier --write ./*.html ./*.json"
+    }
+}

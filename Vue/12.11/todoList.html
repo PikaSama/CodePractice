@@ -1,48 +1,46 @@
 <!DOCTYPE html>
 <html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <title>TodoList</title>
-</head>
-<body>
-    <div id="root">
-        <input v-model="inputValue"/>
-        <button @click="addItem">添加</button>
-        <todo-item v-for="(item,indx) in todolist" :key="indx" :item="item"></todo-item>
-    </div>
-<script>
-    // item组件（全局）
-    Vue.component('todo-item',{
-        props: [
-            'item',
-        ],
-        template: '<li>{{ item }}</li>',
-    });
-    // 局部组件
-    // const todoitem = {
-    //     props: [
-    //         'item',
-    //     ],
-    //     template: '<li>{{ item }}</li>',
-    // }
-    new Vue({
-        el: '#root',
-        // 局部组件
-        // components: {
-        //     todoitem: todoitem,
-        // },
-        data: {
-            inputValue: '',
-            todolist: [],
-        },
-        methods: {
-            addItem() {
-                this.todolist.push(this.inputValue);
-                this.inputValue = '';
-            },
-        },
-    });
-</script>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>TodoList</title>
+    </head>
+    <body>
+        <div id="root">
+            <input v-model="inputValue" />
+            <button @click="addItem">添加</button>
+            <todo-item v-for="(item,indx) in todolist" :key="indx" :item="item"></todo-item>
+        </div>
+        <script>
+            // item组件（全局）
+            Vue.component('todo-item', {
+                props: ['item'],
+                template: '<li>{{ item }}</li>',
+            });
+            // 局部组件
+            // const todoitem = {
+            //     props: [
+            //         'item',
+            //     ],
+            //     template: '<li>{{ item }}</li>',
+            // }
+            new Vue({
+                el: '#root',
+                // 局部组件
+                // components: {
+                //     todoitem: todoitem,
+                // },
+                data: {
+                    inputValue: '',
+                    todolist: [],
+                },
+                methods: {
+                    addItem() {
+                        this.todolist.push(this.inputValue);
+                        this.inputValue = '';
+                    },
+                },
+            });
+        </script>
+    </body>
 </html>
