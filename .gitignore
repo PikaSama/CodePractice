@@ -1,3 +1,13 @@
+# IDE
+.idea/
+
+# Node
 node_modules/
-package.json
+
+# Package manager
+package-lock.json
 yarn.lock
+*.log
+
+# Typescript
+*.tsbuildinfo

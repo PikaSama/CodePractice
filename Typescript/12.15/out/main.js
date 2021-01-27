@@ -12,37 +12,30 @@ let data = {
 };
 fs.readFile('database.json', 'utf8', (err, content) => {
     if (err) {
-        console.error("ERROR: Can not find database file.");
-        menu([
-            'Login',
-            'Register',
-        ], undefined);
+        console.error('ERROR: Can not find database file.');
+        menu(['Login', 'Register']);
     }
     else {
         data = JSON.parse(content);
         if (data.profile.isLogin) {
-            menu([
-                'Logout',
-                'Register',
-            ], '----------' + data.profile.user + '----------');
+            menu(['Logout', 'Register'], '----------' + data.profile.user + '----------');
         }
         else {
-            menu([
-                'Login',
-                'Register',
-            ], undefined);
+            menu(['Login', 'Register']);
         }
     }
 });
 function menu(choices, msg = '----------Dashboard----------') {
-    inquirer.prompt([
+    inquirer
+        .prompt([
         {
             type: 'list',
             name: 'menu',
             message: msg,
             choices: choices,
         },
-    ]).then(({ menu }) => {
+    ])
+        .then(({ menu }) => {
         if (menu === 'Login') {
             login();
         }
@@ -59,18 +52,19 @@ function logout() {
         user: '',
         isLogin: false,
     };
-    fs.writeFile('database.json', JSON.stringify(data), err => {
+    fs.writeFile('database.json', JSON.stringify(data), (err) => {
         if (err) {
             console.error(err);
         }
         else {
-            console.log("Success");
+            console.log('Success');
         }
     });
 }
 function login() {
     function cli() {
-        inquirer.prompt([
+        inquirer
+            .prompt([
             {
                 type: 'input',
                 name: 'user',
@@ -82,31 +76,30 @@ function login() {
                 name: 'pwd',
                 message: 'Password: ',
             },
-        ]).then(({ user, pwd }) => {
-            let status;
-            let epwd;
-            ({ status, epwd } = validate(user));
+        ])
+            .then(({ user, pwd }) => {
+            const { status, epwd } = validate(user);
             if (status) {
                 if (bcrypt.compareSync(pwd, epwd)) {
                     data.profile = {
                         user: user,
                         isLogin: true,
                     };
-                    fs.writeFile('database.json', JSON.stringify(data), err => {
+                    fs.writeFile('database.json', JSON.stringify(data), (err) => {
                         if (err) {
                             console.error(err);
                         }
                         else {
-                            console.log("Success");
+                            console.log('Success');
                         }
                     });
                 }
                 else {
-                    console.error("Error: Incorrect password.");
+                    console.error('Error: Incorrect password.');
                 }
             }
             else {
-                console.error("Error: No such user.");
+                console.error('Error: No such user.');
             }
         });
     }
@@ -114,7 +107,8 @@ function login() {
 }
 function register() {
     function cli() {
-        inquirer.prompt([
+        inquirer
+            .prompt([
             {
                 type: 'input',
                 name: 'user',
@@ -131,14 +125,15 @@ function register() {
                 name: 'verifyPwd',
                 message: 'Retype your password:',
             },
-        ]).then(({ user, passwd, verifyPwd }) => {
+        ])
+            .then(({ user, passwd, verifyPwd }) => {
             if (passwd === verifyPwd) {
                 if (validate(user).status) {
-                    console.error("Erorr: Same user.");
+                    console.error('Erorr: Same user.');
                 }
                 else {
                     data.users[bcrypt.hashSync(user, 10)] = { passwd: bcrypt.hashSync(passwd, 10) };
-                    fs.writeFile('database.json', JSON.stringify(data), err => {
+                    fs.writeFile('database.json', JSON.stringify(data), (err) => {
                         if (err) {
                             console.error(err);
                         }
@@ -149,7 +144,7 @@ function register() {
                 }
             }
             else {
-                console.log("Error: Password validation was failed. Please retry.");
+                console.log('Error: Password validation was failed. Please retry.');
                 cli();
             }
         });
@@ -159,15 +154,13 @@ function register() {
 function validate(user) {
     let status = 0;
     let epwd = '';
-    for (let i in data.users) {
-        if (data.users.hasOwnProperty(i)) {
-            if (bcrypt.compareSync(user, i)) {
-                status = 1;
-                epwd = data.users[i].passwd;
-                break;
-            }
+    Object.keys(data.users).map((objIndex) => {
+        if (bcrypt.compareSync(user, objIndex)) {
+            status = 1;
+            epwd = data.users[objIndex].passwd;
         }
-    }
+        return '';
+    });
     return {
         status,
         epwd,

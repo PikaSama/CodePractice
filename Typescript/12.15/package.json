@@ -1,0 +1,29 @@
+{
+    "name": "AccountSystem",
+    "version": "1.0.0",
+    "description": "An exercise in developing an account system.",
+    "main": "./out/main.js",
+    "author": "Zorin",
+    "license": "MIT",
+    "dependencies": {
+        "bcrypt": "^5.0.0",
+        "inquirer": "^7.3.3"
+    },
+    "devDependencies": {
+        "@types/bcrypt": "^3.0.0",
+        "@types/inquirer": "^7.3.1",
+        "@typescript-eslint/eslint-plugin": "^4.14.1",
+        "@typescript-eslint/parser": "^4.14.1",
+        "eslint": "^7.18.0",
+        "eslint-config-alloy": "^3.10.0",
+        "prettier": "^2.2.1",
+        "typescript": "^4.1.3"
+    },
+    "scripts": {
+        "app": "node ./out/main.js",
+        "test": "node ./out/test.js",
+        "format": "yarn prettier --write ./src/**/*.ts ./*.js ./*.json",
+        "clean": "rm -rf ./out/**",
+        "build": "yarn format && yarn clean && tsc"
+    }
+}
