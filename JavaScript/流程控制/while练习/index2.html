@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>while练习</title>
+</head>
+<body>
+<script type="text/javascript">
+    /*
+        练习内容：通过循环让用户输入正确的成绩，并给予等级
+     */
+    let score = 0;
+    while (true) {
+        score = parseInt(prompt('成绩：'), 10);
+        if (score > 100 || score < 0) {
+            alert('请重新输入');
+        } else {
+            break;
+        }
+    }
+    if (score === 100) {
+        alert('完美');
+    } else if (score >= 80) {
+        alert('优秀');
+    } else if(score >= 60) {
+        alert('良好');
+    } else {
+        alert('不及格');
+    }
+</script>
+</body>
+</html>
