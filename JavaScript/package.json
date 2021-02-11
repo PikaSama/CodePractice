@@ -1,0 +1,14 @@
+{
+    "name": "JavaScript",
+    "version": "1.0.0",
+    "description": "JavaScript practice",
+    "main": "index.js",
+    "author": "Zorin",
+    "license": "MIT",
+    "devDependencies": {
+        "prettier": "^2.2.1"
+    },
+    "scripts": {
+        "format": "prettier --write ./**/*.html ./.*.js ./*.json"
+    }
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>for练习3</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            /*
+              练习内容：打印100-1000中的水仙花数
+              水仙花数：一个三位数，每一位上的数字的3次幂之和等于这个三位数本身
+            */
+            for (let i = 100; i < 1000; i += 1) {
+                const pos1 = parseInt(String(i).slice(0, 1), 10);
+                const pos2 = parseInt(String(i).slice(1, 2), 10);
+                const pos3 = parseInt(String(i).slice(2, 3), 10);
+                const sum = pos1 ** 3 + pos2 ** 3 + pos3 ** 3;
+                if (sum === i) {
+                    console.log(i);
+                }
+            }
+        </script>
+    </body>
+</html>
