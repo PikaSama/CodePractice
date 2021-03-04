@@ -1,0 +1,21 @@
+{
+    "name": "Essays",
+    "version": "1.0.0",
+    "description": "Some code that I wrote out of inspiration.",
+    "main": "index.js",
+    "license": "MIT",
+    "author": "Zorin",
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^4.16.1",
+        "@typescript-eslint/parser": "^4.16.1",
+        "eslint": "^7.21.0",
+        "eslint-config-alloy": "^3.10.0",
+        "prettier": "^2.2.1",
+        "typescript": "^4.2.2"
+    },
+    "scripts": {
+        "format": "yarn prettier --write ./*.js ./*.json",
+        "clean": "rm -rf ./dist/**",
+        "build": "yarn format && yarn clean && tsc"
+    }
+}
