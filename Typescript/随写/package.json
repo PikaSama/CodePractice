@@ -14,7 +14,7 @@
         "typescript": "^4.2.2"
     },
     "scripts": {
-        "format": "yarn prettier --write ./*.js ./*.json",
+        "format": "yarn prettier --write ./*.ts ./*.js ./*.json",
         "clean": "rm -rf ./dist/**",
         "build": "yarn format && yarn clean && tsc"
     }
