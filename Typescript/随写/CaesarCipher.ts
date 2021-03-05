@@ -1,5 +1,3 @@
-const str = 'DSKDVLDF VRXO';
-
 function CaesarCipher(str: string, offset: number): string {
     let parsedOffset = ~~offset;
     const strBox = [''];
@@ -45,4 +43,5 @@ function CaesarCipher(str: string, offset: number): string {
     return strBox.join('');
 }
 
-console.log(CaesarCipher(str, -3));
+export { CaesarCipher };
+
