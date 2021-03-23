@@ -44,4 +44,3 @@ function CaesarCipher(str: string, offset: number): string {
 }
 
 export { CaesarCipher };
-

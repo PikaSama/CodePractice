@@ -1,4 +1,6 @@
-const str = 'DSKDVLDF VRXO';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CaesarCipher = void 0;
 function CaesarCipher(str, offset) {
     let parsedOffset = ~~offset;
     const strBox = [''];
@@ -42,4 +44,4 @@ function CaesarCipher(str, offset) {
     }
     return strBox.join('');
 }
-console.log(CaesarCipher(str, -3));
+exports.CaesarCipher = CaesarCipher;
